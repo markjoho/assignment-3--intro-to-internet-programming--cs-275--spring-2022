@@ -11,9 +11,22 @@
   <p id="matrix"></p>
 </body>
 <script>
+  input = window.prompt(`What size is your square matrix:`, `2`);
+  input = parseInt(input, 10);
+  let size = input*input;
+  let check = input-1;
+  let array = new Array(size);
+  let flippedArray = new Array(size);
+
   function createMatrix() {
-    input = window.prompt(`What size is your square matrix:`, `2`);
-    input = parseInt(input, 10);
+    for (let i = 0; i < size; i++) {
+      array[i] = i+1
+      if (i%check == 0 && i != 0 && i != size-1) {
+        flippedArray[i] = i+1;
+      } else {
+        flippedArray[i] = size-i;
+      }
+    }
   }
 </script>
 </html>
