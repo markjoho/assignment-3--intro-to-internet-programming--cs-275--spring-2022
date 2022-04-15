@@ -10,6 +10,8 @@
   <p>Click the button to enter matrix size.</p>
   <button onclick="createMatrix()">Click to enter</button>
   <!--<script src="js/app.js"></script>-->
+  <p id="test-array"></p>
+  <p id="flipped-test-array"></p>
   <p id="matrix"></p>
   <p id="flipped-matrix"></p>
 
@@ -33,10 +35,24 @@
     }
 
     if (input != null) {
-      document.getElementById("matrix").innerHTML =
+      document.getElementById("test-array").innerHTML =
       array;
-      document.getElementById("flipped-matrix").innerHTML =
+      document.getElementById("flipped-test-array").innerHTML =
       flippedArray;
+
+      let myMatrix = document.createElement("table"),
+          row = myMatrix.insertRow(), cell;
+
+      for (let i = 0; i < array.length; i++) {
+        cell = row.insertCell();
+        cell.innerHTML = array[i];
+        var next = i + 1;
+        if (next%size==0 && next!=data.length) {
+          row = myMatrix.insertRow();
+        }
+      }
+
+      document.getElementById("matrix").appendChild(myMatrix);
     }
   }
 
