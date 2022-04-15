@@ -7,18 +7,22 @@
 </head>
 <body>
   <h1>Flipping a Matrix Along a Diagonal</h1>
-  <script src="js/app.js"></script>
+  <p>Click the button to enter matrix size.</p>
+  <button onclick="createMatrix()">Click to enter</button>
+  <!--<script src="js/app.js"></script>-->
   <p id="matrix"></p>
+  <p id="flipped-matrix"></p>
+
 </body>
 <script>
-  input = window.prompt(`What size is your square matrix:`, `2`);
-  input = parseInt(input, 10);
-  let size = input*input;
-  let check = input-1;
-  let array = new Array(size);
-  let flippedArray = new Array(size);
-
   function createMatrix() {
+    input = window.prompt(`What size is your square matrix:`, `2`);
+    input = parseInt(input, 10);
+    let size = input*input;
+    let check = input-1;
+    let array = new Array(size);
+    let flippedArray = new Array(size);
+
     for (let i = 0; i < size; i++) {
       array[i] = i+1
       if (i%check == 0 && i != 0 && i != size-1) {
@@ -27,6 +31,14 @@
         flippedArray[i] = size-i;
       }
     }
+
+    if (input != null) {
+      document.getElementById("matrix").innerHTML =
+      array;
+      document.getElementById("flipped-matrix").innerHTML =
+      flippedArray;
+    }
   }
+
 </script>
 </html>
