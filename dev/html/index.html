@@ -43,7 +43,6 @@
   .axis {
     background-color: #C5C5C5;
   }
-  
 </style>
 <body>
   <h1>Flipping a Matrix Along a Diagonal</h1>
@@ -90,6 +89,9 @@
         output += `<td class = axis>` + array[i] + `</td>`;
       } else {
         output += `<td class = normal>` + array[i] + `</td>`;
+      }
+      if ((i+1)%input == 0) {
+        output += '</tr>';
       }
     }
     output +=`</table>`;
