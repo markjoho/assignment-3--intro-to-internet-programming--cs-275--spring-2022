@@ -1,0 +1,11 @@
+body {
+  background-image: linear-gradient(to bottom, White, LightBlue, White);
+}
+h1 {
+  padding: 20px;
+  color: Orange;
+  font: bold 40px/60px Sofia, cursive;
+  text-shadow: 3px 3px 3px #000000;
+  text-align: center;
+  margin-top: 30px;
+}

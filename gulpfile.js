@@ -1,15 +1,12 @@
 const { src, dest, series, watch } = require(`gulp`),
-    CSSLinter = require(`gulp-stylelint`),
-    del = require(`del`),
-    babel = require(`gulp-babel`),
     htmlValidator = require(`gulp-html`),
     htmlCompressor = require(`gulp-htmlmin`),
-    imageCompressor = require(`gulp-image`),
+    CSSLinter = require(`gulp-stylelint`),
+    babel = require(`gulp-babel`),
+    jsLinter = require(`gulp-eslint`),
+    browserSync = require(`browser-sync`),
     cleanCSS = require('gulp-clean-css').
     jsCompressor = require(`gulp-uglify`),
-    jsLinter = require(`gulp-eslint`),
-    sass = require(`gulp-sass`)(require(`sass`)),
-    browserSync = require(`browser-sync`),
     reload = browserSync.reload;
 
 let validateHTML = () => {
@@ -22,8 +19,6 @@ let compressHTML = () => {
   .pipe(htmlCompressor({collapseWhitespace: true}))
   .pipe(dest(`prod`));
 };
-
-let browserChoice = `default`;
 
 let lintCSS = () => {
   return src(`dev/css/*.css`)
@@ -62,11 +57,13 @@ let transpileJSForProd = () => {
       .pipe(dest(`prod/js`));
 };
 
+let browserChoice = `default`;
+
 let serve = () => {
   browserSync({
     notify: true,
-    reloadDelay: 50,
     browser: browserChoice,
+    reloadDelay: 50,
     server: {
         baseDir: `temp`
       }
