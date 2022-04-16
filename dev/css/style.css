@@ -1,0 +1,36 @@
+body {
+  background-image: linear-gradient(to bottom, White, LightBlue, White);
+}
+h1 {
+  padding: 20px;
+  color: Orange;
+  font: bold 40px/60px Sofia, cursive;
+  text-shadow: 3px 3px 3px #000000;
+  text-align: center;
+  margin-top: 30px;
+}
+h2 {
+  padding: 10px;
+  color: Black;
+  font: bold 30px/40px Sofia, cursive;
+  text-shadow: 3px 3px 3px #FFFFFF;
+  text-align: center;
+  margin-top: 30px;
+}
+table,
+td {
+  border: 1px solid black;
+  border-style: solid;
+  margin-left: 120px;
+  margin-bottom: 120px;
+  font-weight: 600;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.normal {
+  background-color: #ffffff;
+}
+.axis {
+  background-color: #C5C5C5;
+}
