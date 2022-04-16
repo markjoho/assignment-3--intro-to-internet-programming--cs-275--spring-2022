@@ -9,29 +9,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Mali&family=Shizuru&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
 </head>
-<!--<style></style>-->
+<style>
+  body {
+    background-image: linear-gradient(to bottom, White, LightBlue, White);
+  }
+  h1 {
+    padding: 20px;
+    color: Orange;
+    font: bold 40px/60px Sofia, cursive;
+    text-shadow: 3px 3px 3px #000000;
+    text-align: center;
+    margin-top: 30px;
+  }
+  h2 {
+    padding: 10px;
+    color: Black;
+    font: bold 30px/40px Sofia, cursive;
+    text-shadow: 3px 3px 3px #FFFFFF;
+    text-align: center;
+    margin-top: 30px;
+  }
+  table,
+  td {
+    border: 1px solid black;
+    border-style: solid;
+    margin-left: 120px;
+    margin-bottom: 120px;
+    font-weight: 600;
+  }
+  .normal {
+    background-color: #ffffff;
+  }
+  .axis {
+    background-color: #C5C5C5;
+  }
+  
+</style>
 <body>
   <h1>Flipping a Matrix Along a Diagonal</h1>
-  <p>Click the button to enter matrix size.</p>
-  <button onclick="createMatrix()">Click to enter</button>
   <!--<script src="js/app.js"></script>-->
-  <p id="test-array"></p>
-  <p id="flipped-test-array"></p>
   <p id="matrix"></p>
-  <p id="flipped-matrix"></p>
 
 </body>
 <script>
-  function createMatrix() {
-    input = window.prompt(`What size is your square matrix:`, `2`);
-    input = parseInt(input, 10);
+  let createMatrix = (input) => {
+    let size = input*input;
+    let array = new Array(size);
+
+    for (let i = 0; i < size; i++) {
+      array[i] = i+1;
+    }
+
+    return array;
+  };
+
+  let createReverseMatrix = (input) => {
     let size = input*input;
     let check = input-1;
-    let array = new Array(size);
     let flippedArray = new Array(size);
 
     for (let i = 0; i < size; i++) {
-      array[i] = i+1
       if (i%check == 0 && i != 0 && i != size-1) {
         flippedArray[i] = i+1;
       } else {
@@ -39,27 +76,47 @@
       }
     }
 
-    if (input != null) {
-      document.getElementById("test-array").innerHTML =
-      array;
-      document.getElementById("flipped-test-array").innerHTML =
-      flippedArray;
+    return flippedArray;
+  };
 
-      let myMatrix = document.createElement("table"),
-          row = myMatrix.insertRow(), cell;
-
-      for (let i = 0; i < array.length; i++) {
-        cell = row.insertCell();
-        cell.innerHTML = array[i];
-        var next = i + 1;
-        if (next%size==0 && next!=data.length) {
-          row = myMatrix.insertRow();
-        }
+  let showMatrix = (array, input, name) => {
+    let output = name;
+    let size = array.length;
+    let check = input-1;
+    output += `<table>`;
+    output += `<tr>`;
+    for (let i = 0; i < size; i++) {
+      if (i%check == 0 && i != 0 && i != size-1) {
+        output += `<td class = axis>` + array[i] + `</td>`;
+      } else {
+        output += `<td class = normal>` + array[i] + `</td>`;
       }
+    }
+    output +=`</table>`;
+    return output;
+  };
 
-      document.getElementById("matrix").appendChild(myMatrix);
+  document.getElementById(`matrix`).style.visibility = `visible`;
+  let input = 1;
+  while (input < 2) {
+    input =
+    window.prompt(`What size is your square matrix:`, ``);
+    input = parseInt(input, 10);
+    if (!Number.isInteger(input)) {
+      alert(`Invalid. The input must be an integer that greater than 1`);
+      input = 1;
+    } else {
+      input = parseInt(input, 10);
+      if (input < 2) {
+        alert(`Invalid. Integer less than 2 is not allowed.
+          The input number must greater than 1`);
+      }
     }
   }
-
+  let matrixArray = createMatrix(input);
+  let matrixFlippedArray = createReverseMatrix(input);
+  let matrixOutput = showMatrix(matrixArray, input, `<h2>Original Matrix</h2>`);
+  matrixOutput += showMatrix(matrixFlippedArray, input, `<h2>Flipped Matrix</h2>`);
+  document.getElementById(`matrix`).innerHTML = matrixOutput;
 </script>
 </html>
